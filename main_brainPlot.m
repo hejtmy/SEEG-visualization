@@ -25,20 +25,7 @@ cd(dir_toolbox.path);
 
 %% ######################## USER INTERFACE ##################################
 % --- interface structure 'plotInfo'
-plotInfo = struct(...           % user interface structure: holds most (but not all!) of the user settings
-    'outputDir',[dir_toolbox.path filesep 'figures'], ...   % output directory, where the plots are saved
-    'figureNamePrefix', 'myTest_', ...                  % figure name prefix. Program adds automatic suffix to each figure.
-    'figurePosition', [1 -479 2880 1472], ...           % position of a figure on screen. For whole screen, evoke a figure, maximize it and type: get(gcf, 'Position')
-    'printResolution', 0, ...                           % choices: 0 (= screen resolution) or 600 (= dpi). Resolution of the figures.                          
-    'colorScale', [], ...                               % for example, [-10 10]. If empty, programs adjusts colorscale to 5 & 95 percentile of the data.
-    'colorMap', jet(128), ...                           % colormap for channel values
-    'MRI_fileDir', dir_toolbox.path, ...                % full path to brain MRI NIFTI (.nii) file. Must be normalized to MNI space!
-    'size_interpolate', 1.0, ...                        % in [mm], voxel size to which the brain is interpolated
-    'size_coloredCube', 3.0, ...                        % in [mm], "voxel" size of the colored channel values
-    'slicePlanes', {{'axial','sagittal','coronal'}},... % planes to plot, options: 'axial','sagittal','coronal'
-    'model_views', [0 0; 0 89.999; 90 0], ...           % camera view angles at which the snapshot of the 3D model are taken. For some odd reason (camera light?), view(0,90) makes grey background...
-    'doAnimation_gif', true ...                         % GIF animation of 3D brain model (takes longer time)
-);
+plotInfo = seegv_skeletoncfg;
 
 % --- load channels MNI coors (variable 'data_channels' in 'channelsInfo.mat')
 load('channelsInfo.mat', 'data_channels');
