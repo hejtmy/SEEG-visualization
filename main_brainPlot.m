@@ -32,11 +32,14 @@ dir_toolbox = pwd;
 %% ######################## USER INTERFACE ##################################
 % --- interface structure 'plotInfo'
 plotInfo = seegv_skeletoncfg;
+plotInfo.outputDir = [dir_toolbox.path filesep 'figures']; % output directory, where the plots are saved - WILL BE REBASED
+plotInfo.MRI_fileDir = dir_toolbox.path;
 
 % --- load channels MNI coors (variable 'data_channels' in 'channelsInfo.mat')
-load('channelsInfo.mat', 'data_channels');
-assert(exist('data_channels','var') == 1);
-plotInfo.chnls = data_channels;             % !!! set here your MNI coordinates as a structure array with the same fields as in this example!
+
+load('channelsInfo.mat', 'data_channels'); %TODO - description of this format
+assert(exist('data_channels', 'var') == 1);
+plotInfo.chnls = data_channels; 
 
 % --- channels values to plot, format = [channels x time]
 vals = randn(size(data_channels,2),2);      % !!! set here your channel valus, format = [channels x time], in this example: 2 time points of channel values
