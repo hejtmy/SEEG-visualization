@@ -1,4 +1,5 @@
 function brain = getBrainData(plotInfo)
+% requires only plotInfo about file and interpolation size. Jsut pass it as parameters
 % loads 3D brain MRI or CT = brain
 % interpolates
 % finds selected channels to plot
@@ -13,10 +14,8 @@ if isempty(spm_dir)
 end
 
 %% load normalized brain MRI (wT1.nii)
-%fileName = ['.' filesep plotInfo.MRI_file];
-fileName = plotInfo.MRI_file;
-assert(exist(fileName,'file') == 2);
-brain.hdr = spm_vol(fileName);
+assert(exist(filename, 'file') == 2);
+brain.hdr = spm_vol(filename);
 [brain.vol, brain.xyz] = spm_read_vols(brain.hdr);
 
 %% MNI axis (in mm)
