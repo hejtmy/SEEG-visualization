@@ -15,13 +15,19 @@
 % (c) Jiri Hammer, Jan 2017, bug reports: jirihammer@gmail.com
 
 %% set path to this script
-dir_toolbox = what('SEEG-visualization');     % folder 'visualization_SEEG' MUST be in pathdef.m
-if isempty(dir_toolbox) 
-    error('Path to toolbox required. Add it to pathdef.m !'); 
-end
-addpath(genpath(dir_toolbox.path));
-dir_curr = pwd;
-cd(dir_toolbox.path);
+% BAD practice 
+% - if developing for this package, should be loaded 
+% - if used overall, it shoudl be in the path
+% - otherwise, you load it in appropriate screen, no other stuff needed
+
+dir_toolbox = pwd;
+%dir_toolbox = what('SEEG-visualization');     % folder 'visualization_SEEG' MUST be in pathdef.m
+% if isempty(dir_toolbox) 
+%     error('Path to toolbox required. Add it to pathdef.m !'); 
+% end
+% addpath(genpath(dir_toolbox.path));
+% dir_curr = pwd;
+% cd(dir_toolbox.path);
 
 %% ######################## USER INTERFACE ##################################
 % --- interface structure 'plotInfo'
