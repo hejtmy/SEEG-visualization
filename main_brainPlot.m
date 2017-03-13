@@ -57,7 +57,7 @@ end
 plotInfo.plottingStyle = 'slices';
 filename = [pwd filesep 'examples/data/wT1_subject.nii'];       % subject specific brain normalized to MNI space
 
-plotInfo.brain = seegv_braindata(filename, plotInfo);
+plotInfo.brain = seegv_braindata(filename);
 plotInfo.brain = seegv_interpolate(plotInfo.brain, 1);
 
 % colin27-specific: plot time-series of brain slices (1 figure / time point)
@@ -65,7 +65,7 @@ outDir = [outputDir filesep 'slices_normalizedBrain'];
 for t = 1:size(vals, 2)          % go thru all time points
     plotInfo.figName = [plotInfo.figureNamePrefix 'colin_time' num2str(t)];
     plot_brainSlices(vals(:, t), outDir, plotInfo);
-end    
+end 
 
 %% ################## (B) 3D BRAIN MODEL ##########################
 % colin27-specific (but works on other brain's too! Requires segmented grey matter, normalized to MNI space)

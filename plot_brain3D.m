@@ -55,7 +55,7 @@ clrbar_axes = axes('visible','on', 'position',[0.96 0.2 0.01 0.6]);  % position
 clrbar_vals = [clims(1):1/1000*diff(clims):clims(2)]';
 clrbar_xAx = 1:10;
 clrbar_yAx = 1:size(clrbar_vals,1);
-clrbar_inds = cVals2cInds(repmat(clrbar_vals,[1,10]), [clims(1),clims(2)], size(clrmap.brain,1)+[1,size(clrmap.chnls,1)]);
+clrbar_inds = cVals2cInds(repmat(clrbar_vals,[1,10]), [clims(1), clims(2)], size(clrmap.brain,1) + [1, size(clrmap.chnls,1)]);
 clrbar_hndl = image(clrbar_xAx, clrbar_yAx, ones(size(clrbar_inds)));
 set(clrbar_hndl, 'CData', clrbar_inds, 'CDataMapping','direct');
 minInd = min(clrbar_yAx); maxInd = max(clrbar_yAx); 
@@ -70,7 +70,7 @@ set(gca, 'XTick',[], 'YTick',tickVals, 'YTickLabel',tickName);
 set(clrbar_axes, 'YAxisLocation','right');
 
 %% 3D brain model
-model_axes = axes('visible','on', 'position',[0.05 0.05 0.9 0.9]);  % position
+model_axes = axes('visible','on', 'position', [0.05 0.05 0.9 0.9]);  % position
 hold on;
 cData = ones(size(fv.vertices,1),1);
 brain_cInds = cVals2cInds(cData, [0,1], [1,size(clrmap.brain,1)]);
@@ -95,7 +95,7 @@ set(gca, 'XTick',[], 'YTick',[], 'ZTick',[]);
 %% channels
 circle_size = 28;
 for ch = 1:size(plotInfo.chnls,2)
-    i_clr = cVals2cInds(vals(ch), [clims(1),clims(2)], size(clrmap.brain,1)+[1,size(clrmap.chnls,1)]);
+    i_clr = cVals2cInds(vals(ch), [clims(1), clims(2)], size(clrmap.brain,1)+[1,size(clrmap.chnls,1)]);
     clr = clrmap.fig(i_clr,:);
     [ix,iy,iz] = mni2vox(plotInfo.chnls(ch).MNI_x, plotInfo.chnls(ch).MNI_y, plotInfo.chnls(ch).MNI_z, xi, yi, zi); % index of MNI coor
     scatter3(ix,iy,iz, circle_size, 'MarkerFaceColor',clr, 'MarkerEdgeColor','none');
