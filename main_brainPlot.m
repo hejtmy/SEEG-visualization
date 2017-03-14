@@ -41,7 +41,7 @@ assert(exist('data_channels', 'var') == 1);
 plotInfo.chnls = data_channels; 
 
 % --- channels values to plot, format = [channels x time]
-vals = randn(size(data_channels, 2), 2);      
+vals = randn(size(data_channels, 2), 2);
 % !!! set here your channel valus, format = [channels x time], in this example: 2 time points of channel values
 
 % --- channels color scale - %TODO - no idea what this does??? - what is clim?

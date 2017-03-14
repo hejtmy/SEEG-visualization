@@ -49,14 +49,14 @@ for ch = 1:size(plotInfo.chnls, 2)
     i_sel_z(i_sel_z < 1) = [];                          % indices out of range
     i_sel_z(i_sel_z > length(zi)) = [];    
     
-    chnls_cData(i_sel_x,i_sel_y,i_sel_z) = vals(ch);    % insert the chnl value in a larger (cubic) voxel
-    chnls_aData(i_sel_x,i_sel_y,i_sel_z) = alphaVal;    % transparency of the chnl value in a larger (cubic) voxel
+    chnls_cData(i_sel_x, i_sel_y, i_sel_z) = vals(ch);    % insert the chnl value in a larger (cubic) voxel
+    chnls_aData(i_sel_x, i_sel_y, i_sel_z) = alphaVal;    % transparency of the chnl value in a larger (cubic) voxel
 end
 
 %% map values to colormaps
 % 3D brain data
 %brain_cInds = cVals2cInds(VI, [min(VI(:)),max(VI(:))], [1,size(clrmap.brain,1)]);
-brain_cInds = cVals2cInds(VI, [prctile(VI(:),1),prctile(VI(:),99)], [1,size(clrmap.brain,1)]);
+brain_cInds = cVals2cInds(VI, [prctile(VI(:), 1), prctile(VI(:), 99)], [1, size(clrmap.brain, 1)]);
 
 % channel values
 if ~isfield(plotInfo, 'chnl_clims')
@@ -69,10 +69,9 @@ Z = ones(size(VI));     % dummy variable for image
 
 %% ------------------------- AXIAL SLICES ---------------------------------
 if ismember('axial', plotInfo.slicePlanes)
-    seegv_slicesaxial(mni_coors, chnls_cInds, chnls_aData, ...
-        brain_cInds, plotInfo, clrmap,  xi, yi, zi, Z);
+    f = seegv_slicesaxial(mni_coors, chnls_cInds, chnls_aData, brain_cInds, plotInfo, clrmap,  xi, yi, zi, Z);
+    seegv_createsavefigure(f, clims, clrmap, 'slices')
 end
-
 
 %% ------------------------- SAGITTAL SLICES ---------------------------------
 if ismember('sagittal', plotInfo.slicePlanes)
